@@ -1,0 +1,25 @@
+
+<div class="container">
+    <div class="back">
+        <a routerLink="/" class="backToMain" role="button" id="backMain">
+            Back to main</a>
+    </div>
+    <div class="header" id="header">
+        Create my SUPER array from numbers from -10 to 10
+    </div>
+    <div class="form">
+        <app-form (arrayCalculated)="arrayCalculated($event)"
+                  (sumCalculated)="sumCalculated($event)"
+                  (resetData)="resetData()"></app-form>
+    </div>
+    <div class="array" id="array">
+        Your array is <br><br>
+        {{array}}
+    </div>
+    <div class="sum" id="sum">
+        Sum of two numbers is {{sum}}
+    </div>
+    <div class="footer">
+        <app-footer></app-footer>
+    </div>
+</div>

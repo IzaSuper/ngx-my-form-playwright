@@ -1,0 +1,92 @@
+<div class="bg-body p-4 mb-2 bg-color">
+    <form id="form" [formGroup]="reactiveForm">
+        <div class="d-grid mb-3">
+            <a routerLink="/" style="color: white" class="btn btn-secondary btn-lg" role="button" id="back">
+                Back to main</a>
+        </div>
+        <div class="form-group">
+            <label class="form-label fw-bolder mb-1 ms-2" for="hotels">Your Destination</label>
+            <select id="hotels"
+                    class="form-select"
+                    name="hotels"
+                    required
+                    formControlName="hotel">
+                <option value="Jumeirah">Five Jumeirah Village</option>
+                <option value="TRYP">TRYP by Wyndham Dubai</option>
+            </select>
+            <div class="message p-2 mt-1 align-items-center fw-bold" style="color: blue" id="message">{{ message }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group mb-3">
+                    <span class="form-label fw-bolder mb-1 ms-2">Check In</span>
+                    <input class="form-control"
+                           type="date"
+                           required
+                           id="from"
+                           [min]="today"
+                           formControlName="from">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group mb-3">
+                    <span class="form-label fw-bolder mb-1 ms-2">Check out</span>
+                    <input class="form-control"
+                           type="date"
+                           required
+                           id="to"
+                           [min]="minCheckOut"
+                           formControlName="to">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group mb-3">
+                    <label for="adults" class="form-label fw-bolder mb-1 ms-2">Adults</label>
+                    <input type="number"
+                           id="adults"
+                           class="form-control"
+                           formControlName="adults"
+                           (focus)="resetAdults()"
+                           (keydown)="restrictZero($event)">
+                    <div class="text-center">
+                        <small class="text-danger text-center" style="font-weight: bold"
+                               *ngIf="(reactiveForm.get('adults').invalid && (reactiveForm.get('adults').touched || reactiveForm.get('adults').dirty))">
+                            Between 1 and 40 required.</small>
+                    </div>
+                    <span class="select-arrow"></span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group mb-3">
+                    <label for="children" class="form-label fw-bolder mb-1 ms-2">Children</label>
+                    <input type="number"
+                           id="children"
+                           class="form-control"
+                           formControlName="children"
+                           (focus)="resetChildren()"
+                           (keydown)="restrictZero($event)">
+                    <div class="text-center">
+                        <small class="text-danger" style="font-weight: bold"
+                               *ngIf="reactiveForm.get('children')?.invalid">Between 1 and 40 required.</small>
+                    </div>
+                    <span class="select-arrow"></span>
+                </div>
+            </div>
+        </div>
+        <div class="d-grid gap-3">
+            <button class="btn btn-success btn-lg" id="total" type="submit"
+                    [disabled]="!(reactiveForm.valid)">
+                {{ reactiveForm.valid ? 'Total cost is ' + total + '$' : 'Check total cost' }}
+            </button>
+            <a href="{{createLink()}}" target="_blank"
+               style="color: white" class="btn btn-success btn-lg" role="button"
+               [class.disabled]="!(reactiveForm.get('hotel').value)" id="check">
+                Check selected hotel</a>
+            <button class="btn btn-success btn-lg" id="clear" (click)="resetForm()">Clear parameters</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+<form class="form" (ngSubmit)="checkSubmit($event)" #check="ngForm" (keydown)="stopSubmit($event)">
+    <div class="inputs">
+        <input type="number"
+               placeholder="Enter number 1"
+               [(ngModel)]="number1"
+               name="number1"
+               id="num1"
+               [min]="-10"
+               [max]="10"
+               required
+               #number1Input ="ngModel"
+               (focus)="resetInput1()">
+        <div>
+            <small class="small1" id="noneItem1" *ngIf="number1Input.errors?.['required'] && number1Input.touched">Number1 is required.</small>
+            <small class="small1" id="invalidItem1" *ngIf="number1Input.value && number1Input.invalid">Number1 has to be between -10 and 10.</small>
+        </div>
+
+        <input type="number"
+               placeholder="Enter number 2"
+               [(ngModel)]="number2"
+               name="number2"
+               id="num2"
+               [min]="-10"
+               [max]="10"
+               required
+               #number2Input ="ngModel"
+               (focus)="resetInput2()">
+        <div>
+            <small class="small2" id="noneItem2" *ngIf="number2Input.errors?.['required'] && number2Input.touched">Number2 is required.</small>
+            <small class="small2" id="invalidItem2" *ngIf="number2Input.value && number2Input.invalid">Number2 has to be between -10 and 10.</small>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button type="submit" id="createArray" name="createArray" [disabled]="!check.valid">Create an array</button>
+        <button type="submit" id="createSum" name="createSum" [disabled]="!check.valid" >Sum 2 numbers</button>
+        <button type="reset" id="reset" (click)="clearData()">Clear all data</button>
+    </div>
+</form>
