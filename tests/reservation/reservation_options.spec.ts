@@ -1,8 +1,8 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, Locator} from '@playwright/test';
 import {CreateReservation} from "../utils";
 
-let reservation: any
-let total: any
+let reservation: CreateReservation
+let total: Locator
 let checkIn1: string
 let checkOut2: string
 test.describe("Reservation options", () => {
@@ -25,7 +25,7 @@ test.describe("Reservation options", () => {
         checkOut2 = edit.toISOString().split('T')[0]
     })
     test("create simple reservation", async ({page}) => {
-        await expect(total).not.toBeDisabled()
+        await expect(total).toBeEnabled()
         await expect(total).toContainText('Total cost is 1000$')
         await expect(page.locator('#check')).toHaveClass('btn btn-success btn-lg')
 

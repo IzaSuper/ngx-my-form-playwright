@@ -1,10 +1,10 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, Locator} from '@playwright/test';
 import {TotalButtonDisabledAdultsChildren, TotalButtonEnabledAdultsChildren, ButtonsDisabledSelectHotel} from "../../utils";
 let buttonDisabled: TotalButtonDisabledAdultsChildren
 let buttonEnabled: TotalButtonEnabledAdultsChildren
 let buttonsDisabled: ButtonsDisabledSelectHotel
-let children: any
-let small: any
+let children: Locator
+let small: Locator
 test.describe("children validation with #total & #check button validation", () => {
     test.beforeEach(async ({page}) => {
         await page.goto('/reservation')
@@ -24,13 +24,13 @@ test.describe("children validation with #total & #check button validation", () =
         await buttonEnabled.checkEnabled()
         await children.fill('1')
         await buttonEnabled.checkEnabled()
-        await expect(small).not.toBeVisible()
+        await expect(small).toBeHidden()
         await children.focus()
         await children.clear()
         await buttonEnabled.checkEnabled()
         await children.fill('40')
         await buttonEnabled.checkEnabled()
-        await expect(small).not.toBeVisible()
+        await expect(small).toBeHidden()
     })
     test("number of children is incorrect", async () => {
         await children.focus()
@@ -52,7 +52,7 @@ test.describe("children validation with #total & #check button validation", () =
         await buttonEnabled.checkEnabled()
         await children.blur()
         await buttonEnabled.checkEnabled()
-        await expect(small).not.toBeVisible()
+        await expect(small).toBeHidden()
     })
     test("number of children resets correctly", async ({page}) => {
         await children.focus()

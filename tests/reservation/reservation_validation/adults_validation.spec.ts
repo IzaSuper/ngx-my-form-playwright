@@ -1,7 +1,7 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, Locator} from '@playwright/test';
 import {TotalButtonDisabledAdultsChildren, TotalButtonEnabledAdultsChildren, ButtonsDisabledSelectHotel} from "../../utils";
-let adults: any
-let small: any
+let adults: Locator
+let small: Locator
 let buttonDisabled: TotalButtonDisabledAdultsChildren
 let buttonEnabled: TotalButtonEnabledAdultsChildren
 let buttonsDisabled: ButtonsDisabledSelectHotel
@@ -24,13 +24,13 @@ test.describe("adults validation with #total & #check button validation", () => 
         await buttonDisabled.checkDisabled()
         await adults.fill('1')
         await buttonEnabled.checkEnabled()
-        await expect(small).not.toBeVisible()
+        await expect(small).toBeHidden()
         await adults.focus()
         await adults.clear()
         await buttonDisabled.checkDisabled()
         await adults.fill('40')
         await buttonEnabled.checkEnabled()
-        await expect(small).not.toBeVisible()
+        await expect(small).toBeHidden()
     })
     test("number of adults is incorrect", async () => {
         await adults.focus()
