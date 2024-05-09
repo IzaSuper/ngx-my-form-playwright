@@ -1,10 +1,10 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, Locator} from '@playwright/test';
 let initialCheckIn: string
 let initialCheckOut: string
 let checkIn: string
 let checkOut: string
-let from: any
-let to: any
+let from: Locator
+let to: Locator
 
 test.describe("date validation", () => {
     test.beforeEach(async ({page}) => {

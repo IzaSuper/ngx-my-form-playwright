@@ -1,9 +1,9 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, Locator} from '@playwright/test';
 import {ButtonsDisabledSelectHotel} from "../../utils";
 
 let disabled: ButtonsDisabledSelectHotel
-let hotels: any
-let message: any
+let hotels: Locator
+let message: Locator
 
 test.describe("hotels validation", () => {
     test.beforeEach(async ({page}) => {
@@ -38,7 +38,7 @@ test.describe("hotels validation", () => {
     })
     test("select hotel is resetting correctly", async ({page}) => {
         await hotels.selectOption('Jumeirah')
-        await expect(page.locator('#total')).not.toBeDisabled()
+        await expect(page.locator('#total')).toBeEnabled()
         await expect(page.locator('#check')).toHaveClass('btn btn-success btn-lg')
         await page.click('#clear')
         await disabled.checkMessage()

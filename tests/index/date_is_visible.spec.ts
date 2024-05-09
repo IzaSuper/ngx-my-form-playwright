@@ -15,11 +15,10 @@ test.describe("date is visible", () => {
         await expect(footer).toContainText(dateNow)
     })
     test("time is changing correctly", async ({page}) => {
-        const date_1 = await (page.locator('#footer')).innerText()
+        const date_1 = await page.locator('#footer').innerHTML()
         console.log(date_1, 'one')
-        // eslint-disable-next-line playwright/no-wait-for-timeout
         await page.waitForTimeout(1000)
-        const date_2 = await (page.locator('#footer')).innerText()
+        const date_2 = await page.locator('#footer').innerHTML()
         console.log(date_2, 'two')
         expect(date_2).not.toEqual(date_1)
     })

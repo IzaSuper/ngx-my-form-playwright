@@ -1,9 +1,9 @@
-import {expect, Page} from '@playwright/test'
+import {expect, Locator, Page} from '@playwright/test'
 
 //index
 export class typeCorrectNumbers {
-    private readonly num1: any
-    private readonly num2: any
+    private readonly num1: Locator
+    private readonly num2: Locator
     constructor(page: Page) {
         this.num1 = page.locator('#num1')
         this.num2 = page.locator('#num2')
@@ -15,8 +15,8 @@ export class typeCorrectNumbers {
 }
 
 export class ButtonValidation {
-    private readonly createArray: any
-    private readonly createSum: any
+    private readonly createArray: Locator
+    private readonly createSum: Locator
 
     constructor(page: Page) {
         this.createArray = page.locator('#createArray')
@@ -30,8 +30,8 @@ export class ButtonValidation {
 }
 
 export class SmallsValidation {
-    private readonly small1: any
-    private readonly small2: any
+    private readonly small1: Locator
+    private readonly small2: Locator
 
     constructor(page: Page) {
         this.small1 = page.locator('.small1')
@@ -39,8 +39,8 @@ export class SmallsValidation {
     }
 
     async checkNotExisting() {
-        await expect(this.small1).not.toBeVisible()
-        await expect(this.small2).not.toBeVisible()
+        await expect(this.small1).toBeHidden()
+        await expect(this.small2).toBeHidden()
     }
 }
 
@@ -65,8 +65,8 @@ export class HTMLValidatorMessage {
 }
 
 export class FocusAndBlurNumber1 {
-    private readonly num1: any
-    private readonly small1: any
+    private readonly num1: Locator
+    private readonly small1: Locator
 
     constructor(page: Page) {
         this.num1 = page.locator('#num1')
@@ -82,8 +82,8 @@ export class FocusAndBlurNumber1 {
 }
 
 export class FocusAndBlurNumber2 {
-    private readonly num2: any
-    private readonly small2: any
+    private readonly num2: Locator
+    private readonly small2: Locator
 
     constructor(page: Page) {
         this.num2 = page.locator('#num2')
@@ -99,8 +99,8 @@ export class FocusAndBlurNumber2 {
 }
 
 export class CheckInvalid1Message {
-    private readonly noItem1: any
-    private readonly invalidItem1: any
+    private readonly noItem1: Locator
+    private readonly invalidItem1: Locator
 
     constructor(page: Page) {
         this.noItem1 = page.locator('#noItem1')
@@ -108,14 +108,14 @@ export class CheckInvalid1Message {
     }
 
     async message1() {
-        await expect(this.noItem1).not.toBeVisible()
+        await expect(this.noItem1).toBeHidden()
         await expect(this.invalidItem1).toContainText('Number1 has to be between -10 and 10.')
     }
 }
 
 export class CheckInvalid2Message {
-    private readonly noItem2: any
-    private readonly invalidItem2: any
+    private readonly noItem2: Locator
+    private readonly invalidItem2: Locator
 
     constructor(page: Page) {
         this.noItem2 = page.locator('#noItem2')
@@ -123,7 +123,7 @@ export class CheckInvalid2Message {
     }
 
     async message2() {
-        await expect(this.noItem2).not.toBeVisible()
+        await expect(this.noItem2).toBeHidden()
         await expect(this.invalidItem2).toContainText('Number2 has to be between -10 and 10.')
     }
 }
@@ -131,12 +131,12 @@ export class CheckInvalid2Message {
 //reservation
 
 export class CreateReservation {
-    private readonly hotel: any
-    private readonly from: any
-    private readonly to: any
-    private readonly adults: any
-    private readonly children: any
-    private readonly total: any
+    private readonly hotel: Locator
+    private readonly from: Locator
+    private readonly to: Locator
+    private readonly adults: Locator
+    private readonly children: Locator
+    private readonly total: Locator
     constructor(private readonly page: Page) {
         this.hotel = this.page.locator('#hotels')
         this.from = this.page.locator('#from')
@@ -160,9 +160,9 @@ export class CreateReservation {
         await this.to.fill(checkOut)
     }
     async create(options: {
-        hotel?: any;
-        from?: string;
-        to?: string;
+        hotel?: string;
+        from?: boolean;
+        to?: boolean;
         adults?: number;
         children?: number;
     } = {}) {
@@ -187,10 +187,10 @@ export class CreateReservation {
 }
 
 export class ButtonsDisabledSelectHotel {
-    private readonly hotel: any
-    private readonly message: any
-    private readonly total: any
-    private readonly check: any
+    private readonly hotel: Locator
+    private readonly message: Locator
+    private readonly total: Locator
+    private readonly check: Locator
     constructor(private readonly page: Page) {
 
             this.hotel = this.page.locator('#hotels')
@@ -206,8 +206,8 @@ export class ButtonsDisabledSelectHotel {
     }
 }
 export class TotalButtonDisabledAdultsChildren {
-    private readonly total: any
-    private readonly check: any
+    private readonly total: Locator
+    private readonly check: Locator
     constructor(private readonly page: Page) {
         this.total = this.page.locator('#total')
         this.check = this.page.locator('#check')
@@ -218,14 +218,14 @@ export class TotalButtonDisabledAdultsChildren {
     }
 }
 export class TotalButtonEnabledAdultsChildren {
-    private readonly total: any
-    private readonly check: any
+    private readonly total: Locator
+    private readonly check: Locator
     constructor(private readonly page: Page) {
         this.total = this.page.locator('#total')
         this.check = this.page.locator('#check')
     }
     async checkEnabled() {
-        await expect(this.total).not.toBeDisabled()
+        await expect(this.total).toBeEnabled()
         await expect(this.check).toHaveClass('btn btn-success btn-lg')
     }
 }

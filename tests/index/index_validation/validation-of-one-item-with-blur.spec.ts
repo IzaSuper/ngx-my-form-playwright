@@ -19,7 +19,7 @@ test.describe("check options- validation of one item with blur", () => {
     test("input only second item", async ({page}) => {
         await (page.locator('#num2')).fill('10')
         const small2 = page.locator('.small2')
-        await expect(small2).not.toBeVisible()
+        await expect(small2).toBeHidden()
         await focusAndBlur1.checkExisting1()
         await validateButtons.checkDisability()
         const check1 = await validator.checkValidity('num1')
@@ -30,7 +30,7 @@ test.describe("check options- validation of one item with blur", () => {
     test("input only first item", async ({page}) => {
         await (page.locator('#num1')).fill('10')
         const small1 = page.locator('.small1')
-        await expect(small1).not.toBeVisible()
+        await expect(small1).toBeHidden()
         await focusAndBlur2.checkExisting2()
         await validateButtons.checkDisability()
         const check1 = await validator.checkValidity('num1')

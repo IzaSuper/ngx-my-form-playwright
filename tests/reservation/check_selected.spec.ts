@@ -1,5 +1,5 @@
-import {test, expect} from '@playwright/test';
-let check: any
+import {test, expect, Locator} from '@playwright/test';
+let check: Locator
 test.describe("check selected hotel", () => {
     test.beforeEach(async ({page}) => {
         await page.goto('/reservation')

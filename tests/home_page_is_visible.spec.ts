@@ -4,8 +4,8 @@ test.describe("home page is visible", () => {
         await page.goto('/')
     })
     test("page is visible", async ({page}) => {
-        const isVisible = await page.isVisible(('body'))
-        expect(isVisible).toBe(true)
+        const body = page.locator('body')
+        await expect(body).toBeVisible()
     })
     test("link to array is active", async ({page}) => {
         await expect (page.locator('#index')).toHaveText('Array')

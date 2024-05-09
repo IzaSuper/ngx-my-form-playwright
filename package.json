@@ -7,11 +7,13 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "http-server",
+    "lint": "eslint tests/*",
     "playwright:serve": "http-server dist/ngx-app-playwright/browser -a localhost -p 8080 --proxy http://localhost:8080?",
     "playwright:open": "npx playwright test --ui",
     "playwright:run": "npx playwright test",
     "playwright:ci": "start-server-and-test playwright:serve http://localhost:8080 playwright:run"
   },
+  "type": "module",
   "private": true,
   "dependencies": {
     "@angular/animations": "^17.3.0",
@@ -30,9 +32,15 @@
     "@angular-devkit/build-angular": "^17.3.5",
     "@angular/cli": "^17.3.5",
     "@angular/compiler-cli": "^17.3.0",
+    "@eslint/js": "^9.2.0",
     "@playwright/test": "^1.43.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.12.7",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-playwright": "^1.6.0",
+    "globals": "^15.1.0",
     "http-server": "^14.1.1",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
@@ -41,6 +49,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "start-server-and-test": "^2.0.3",
-    "typescript": "~5.4.2"
+    "typescript": "~5.4.2",
+    "typescript-eslint": "^7.8.0"
   }
 }
