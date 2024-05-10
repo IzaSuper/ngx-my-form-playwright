@@ -1,3 +1,5 @@
+This repo contains my Angular forms application with Playwright tests. I have added Github CI/CD and Eslint to check if Playwright tests are written correctly.
+
 # NgxAppPlaywright
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.5.
